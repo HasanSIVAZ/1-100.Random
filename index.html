@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sayıları Yazdır</title>
+<style>
+    /* Stil kodları buraya eklenebilir */
+    .highlight {
+        color: red;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+    <div>
+        <p>1'den 99'a kadar olan sayıları for döngüsü ile yan yana</p>
+        <button id="siralaButton" onclick="sirala()">Sırala</button><br>
+        <button id="rastgeleButton" onclick="rastgele()">Rastgele Sayı Seç</button>
+    </div><br>
+    <div id="sayiCiktisi">
+        <!-- Sayı çıktısı buraya eklenecek -->
+    </div>
+
+    <script>
+        function sirala() {
+            var sayiCiktisi = document.getElementById("sayiCiktisi");
+            sayiCiktisi.innerHTML = ""; // Önceki içeriği temizle
+
+            for (var i = 1; i <= 99; i++) {
+                var span = document.createElement("span");
+                span.textContent = i + " ";
+                sayiCiktisi.appendChild(span);
+
+                // Her satırda 10 sayı olsun, yeni satır ekle
+                if (i % 10 === 0) {
+                    sayiCiktisi.appendChild(document.createElement("br"));
+                }
+            }
+
+            // Buton durumları güncelle
+            document.getElementById("siralaButton").disabled = true;
+            document.getElementById("rastgeleButton").disabled = false;
+        }
+
+        function rastgele() {
+            var randomSayi = Math.floor(Math.random() * 99) + 1;
+            var sayiSpanListesi = document.querySelectorAll("#sayiCiktisi span");
+
+            // Önceki tüm vurguları kaldır
+            // sayiSpanListesi.forEach(function(span) {
+            //     span.classList.remove("highlight");
+            // });
+
+            sayiSpanListesi[randomSayi -1].classList.add("highlight");
+
+            // Buton durumları güncelle
+            document.getElementById("siralaButton").disabled = false;
+        }
+    </script>
+</body>
+</html>
+
+
